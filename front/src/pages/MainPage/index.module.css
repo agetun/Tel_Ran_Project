@@ -122,8 +122,9 @@
     border: none;
     border-radius: 20px;
     margin-bottom: 30px;
-    margin-top: 50px;
-   
+    margin-top: 50px;   
+    font-size: 25px;
+    padding: 10px;
 }
 
 .phone_num_inp::placeholder{

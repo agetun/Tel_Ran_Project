@@ -10,6 +10,14 @@ export const incrementCountAction = payload => ({ type: INCREMENT_COUNT, payload
 export const decrementCountAction = payload => ({ type: DECREMENT_COUNT, payload });
 export const clearCartAction = () => ({ type: CLEAR_CART });
 
+//Это селектор, который извлекает количество товаров из состояния корзины:
+export const selectCartItemCount = (state) => {
+  return state.cart.reduce((acc, { count }) => {
+    return acc + count;
+  }, 0);
+};
+//-----------------------------------------
+
 const checkProduct = (state, payload) => {
   const productInCart = state.find(el => el.id === +payload.id);
   if(!productInCart){
