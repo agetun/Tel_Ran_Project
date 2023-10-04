@@ -11,7 +11,7 @@ export default function DiscountForm() {
 
   const handleChange = () => {
     setCheckboxChecked(!checkboxChecked);
-    // Вызывайте get_discount_products при изменении состояния флажка
+    
     dispatch(getDiscountProductsAction(!checkboxChecked));
   };
 

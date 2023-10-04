@@ -19,11 +19,14 @@ export default function MainPage() {
 
   const products = useSelector(state => state.allProducts)
 
-  const first_four_products = products.filter(el => el.discont_price !== null).slice(0,4)
+  // Отрисовка случайных карточек акционных товаров
+  const get_random_products = () => {
+    const first_four_products = [...products].sort(() => Math.random() - 0.5)
+    return first_four_products.slice(0, 4)
+  }
+  const random_products = get_random_products();
 
-  // console.log(first_four_products);
-
-
+  
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     mode: 'onChange'
 });
@@ -82,43 +85,27 @@ const submit = new_product_obj => {
           <h1>5% off</h1>
           <h2>on the first order</h2>
           <form onSubmit={handleSubmit(submit)}>
-                        <input type="text" className={s.phone_num_inp} placeholder='+49' name='phoneNumber' {...phoneNumberRegister}
-                        />
+                <input type="text" className={s.phone_num_inp} placeholder='+49' name='phoneNumber' {...phoneNumberRegister}/>
 
-                        {errors.phoneNumber && <p className={s.error_msg}>{errors.phoneNumber?.message}</p>}
+                  {errors.phoneNumber && <p className={s.error_msg}>{errors.phoneNumber?.message}</p>}
 
-
-
-                        <button className={s.discount_btn}>Get a discount</button>
-                    </form>
+                <button className={s.discount_btn}>Get a discount</button>
+            </form>
         </div>
       </div>
 
 
-      {/* <div className={s.dwarf_wrapper}>
-        <img src={gnome} alt="Gnome" />
-        <div className={s.discount_descr}>
-          <h1>5% off</h1>
-          <h2>on the first order</h2>
-          <input type="text" className={s.phone_num_inp} placeholder='+49' />
-          <button className={s.discount_btn}>Get a discount</button>
-        </div>
-      </div> */}
-
-
-
+      {/* Контейнер для рандомных 4-х акционных товаров */}
       <div className={s.gen_sale_container}>
         <h3>Sale</h3>
         <div>
 
-          <ProductsContainer products={first_four_products} productsStyle={true}/>         
+          <ProductsContainer products={random_products} productsStyle={true}/>         
 
         </div>
       </div>
 
-    </div>
-
-    
+    </div>    
 
   )
 }

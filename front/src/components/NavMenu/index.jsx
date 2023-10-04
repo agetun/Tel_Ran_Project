@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import s from './index.module.css'
 import logoImage from '../../images/logo.png'
 import cart from '../../images/cart.png'
-import { selectCartItemCount } from '../../store/reducer/cartReducer'
+import { countCartItemAction } from '../../store/reducer/cartReducer'
 import { useSelector } from 'react-redux'
 
 
@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 export default function NavMenu() {
 
   // useSelector для получения количества товаров из корзины:  
-const itemCount = useSelector(selectCartItemCount);
+const itemCount = useSelector(countCartItemAction);
 //----------------------------------
 
   return (

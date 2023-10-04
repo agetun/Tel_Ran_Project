@@ -31,7 +31,7 @@ export default function SingleProductPage() {
 
         <div className={s.add_btn}
 				  
-				  onClick={() => dispatch(addToCartAction({ id: +id,  title, price }))}				  
+				  onClick={() => dispatch(addToCartAction({ id: +id, image, discont_price, title, price }))}				  
 			  >
           Add to card
         </div>

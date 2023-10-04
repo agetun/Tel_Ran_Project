@@ -10,8 +10,8 @@ export const incrementCountAction = payload => ({ type: INCREMENT_COUNT, payload
 export const decrementCountAction = payload => ({ type: DECREMENT_COUNT, payload });
 export const clearCartAction = () => ({ type: CLEAR_CART });
 
-//Это селектор, который извлекает количество товаров из состояния корзины:
-export const selectCartItemCount = (state) => {
+//Это Action, который извлекает количество товаров из состояния корзины:
+export const countCartItemAction = (state) => {
   return state.cart.reduce((acc, { count }) => {
     return acc + count;
   }, 0);
@@ -28,7 +28,12 @@ const checkProduct = (state, payload) => {
   }
 }
 
-export const cartReducer = (state=[], action) => {
+// ------ добавляем localStorage - память браузера
+const initialState = JSON.parse(localStorage.getItem('shopping_cart')) || []
+
+//-----------------------------------------------
+
+export const cartReducer = (state=initialState, action) => {
   if(action.type === ADD_TO_CART){
     return checkProduct(state, action.payload)
   } else if (action.type === DELETE_FROM_CART) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItem from '../CartItem';
 import s from './index.module.css'
@@ -10,6 +10,13 @@ export default function Cart() {
 
   const cart_state = useSelector(state => state.cart);
 
+  // ----добавляем localStorage - память браузера
+
+  useEffect(() => {
+    localStorage.setItem('shopping_cart', JSON.stringify(cart_state))}, [cart_state]);
+  
+  // -----------------------------------
+
   const dispatch = useDispatch();
 
   const total = cart_state.reduce((acc,  {price, discont_price, count}) => {
@@ -20,9 +27,8 @@ export default function Cart() {
     const [phoneNumber, setPhoneNumber] = useState('');
 
     const handleSubmit = (e) => {
-      e.preventDefault();
-      
-      // alert(`Заказ размещен с номером телефона: ${phoneNumber}`);
+      e.preventDefault(); 
+            
       sendOrder()
       e.target.reset()
   };
@@ -33,13 +39,14 @@ export default function Cart() {
     <div className={s.cart_cont}>
     <h1 className={s.title_cart}>Shopping Basket</h1>
     
+    {/* Проверка корзины пуста или с товарами */}
     <div>
       <div className={s.cart_cont}>       
         {cart_state.length > 0
           ? cart_state.map((el) => <CartItem key={el.id} {...el} />)
           : <p className={s.empty}>Your cart is empty.</p>}
    
-     
+      {/* Форма отправки заказа */}
        {cart_state.length > 0 && (
         <form onSubmit={handleSubmit} className={s.order}>
           <h2>Order details</h2>

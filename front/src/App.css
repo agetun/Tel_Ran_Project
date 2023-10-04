@@ -7,14 +7,9 @@
 
 
 
-#root {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+#root {  
   max-width: 1440px;
-  margin: 0 auto;
-  /* background-image: url(../src/images/flower_1.jpg); */
-  /* background-color: aqua; */
+  margin: 0 auto; 
 }
 
 a {

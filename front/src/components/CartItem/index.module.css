@@ -70,7 +70,7 @@
 .price_dis p:first-child {
   color: black;
   font-weight: 600;
-  font-size: 40px;    
+  font-size: 25px;    
 }
 
 .price_dis p:nth-child(2) {
