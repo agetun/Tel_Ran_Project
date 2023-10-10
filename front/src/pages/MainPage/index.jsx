@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-// import sale_img from '../../images/sale_img.png'
 import { Link } from 'react-router-dom'
 import CategoriesContainer from '../../components/CategoriesContainer'
 import ProductsContainer  from '../../components/ProductsContainer'
